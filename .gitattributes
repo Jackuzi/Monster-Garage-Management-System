@@ -1,4 +1,4 @@
 $ cat .gitattributes
 *.rb linguist-language=Java
-src/main/resources/static/* linguist-vendored
-src/main/resources/templates/* linguist-vendored
+src/main/resources/* linguist-vendored
+
