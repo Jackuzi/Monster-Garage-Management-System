@@ -1,0 +1,1 @@
+INSERT into CAR Values(2, 'EX65TUP', 'Hyundai', 'i40', '2018', '125000', 'Grey');
