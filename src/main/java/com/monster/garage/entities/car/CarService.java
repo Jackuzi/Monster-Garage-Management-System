@@ -29,7 +29,11 @@ public class CarService {
   }
 
   public void updateCar(String id, Car car) {
+    if (repository.existsById(Integer.valueOf(id))) {
+      repository.save(car);
+    }
   }
+
 
   public void deleteCar(String id) {
     repository.deleteById(Integer.valueOf(id));

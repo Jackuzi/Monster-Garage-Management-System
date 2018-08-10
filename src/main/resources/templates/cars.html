@@ -32,6 +32,8 @@
 
         <!-- /.sidebar -->
     </aside>
+
+
     <div class="content-wrapper" style="min-height: 254.666px;">
         <!-- Content Header (Page header) -->
 
@@ -55,74 +57,127 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Responsive Hover Table</h3>
-
-                                <div class="card-tools">
-                                    <div class="input-group input-group-sm" style="width: 150px;">
-                                        <input name="table_search" class="form-control float-right" placeholder="Search"
-                                               type="text">
-
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
-                                            </button>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                           role="tab" aria-controls="nav-home" aria-selected="true">car</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                           role="tab" aria-controls="nav-profile" aria-selected="false">customer</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                           role="tab" aria-controls="nav-contact" aria-selected="false">cos wymysle</a>w
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Search car</h3>
+                                        <div class="card-tools">
+                                            <div class="input-group input-group-sm" style="width: 150px;">
+                                                <input name="table_search" class="form-control float-right"
+                                                       placeholder="Search"
+                                                       type="text" id="tableSearch">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default"><i
+                                                            class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
+
+                                    <!-- /.card-header -->
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>REG</th>
+                                                <th>MAKE</th>
+                                                <th>MODEL</th>
+                                                <th>YEAR</th>
+                                                <th>MILEAGE</th>
+                                                <th>COLOR</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="carsTable">
+                                            <tr th:each="car: ${cars}">
+                                                <a class=".btn.btn-app">save</a>
+                                                <td th:text="${car.id}"></td>
+                                                <td th:text="${car.reg}"></td>
+                                                <td th:text="${car.make}"></td>
+                                                <td th:text="${car.model}"></td>
+                                                <td th:text="${car.year}"></td>
+                                                <td th:text="${car.mileage}"></td>
+                                                <td th:text="${car.color}"></td>
+                                                <td>
+
+                                                    <input type="hidden" name="id" th:value="${car.id}"/>
+                                                    <button type="submit" name="action"
+                                                            class="fa fa-edit nav-icon btn-sm btn-info"
+                                                            data-toggle="modal"
+                                                            data-target="#editModal">
+                                                    </button>
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
                                 </div>
+                                <!-- /.card -->
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <tbody>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
-                                    </tr>
-                                    <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="tag tag-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+                        </div><!-- /.row -->
                     </div>
-                </div><!-- /.row -->
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...
+                    </div>
+                </div>
+
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
+        <div class="modal" id="editModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="#"
+                              method="post">
+
+
+                            <button type="submit" name="action"
+                                    class="fa fa-edit nav-icon btn-sm btn-save"
+                                    th:value="edit">
+                            </button>
+                            <button type="submit" name="action"
+                                    class="fa fa-edit nav-icon btn-sm btn-delete"
+                                    th:value="edit">
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
@@ -136,5 +191,17 @@
 <script th:src="@{/dist/js/adminlte.min.js}"></script>
 <!-- AdminLTE for demo purposes -->
 <script th:src="@{/dist/js/demo.js}"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#tableSearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#carsTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </body>
 </html>
