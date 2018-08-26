@@ -3,10 +3,9 @@ package com.monster.garage.entities.car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CarController {
@@ -26,13 +25,21 @@ public class CarController {
     return "customers";
   }
 
-  @PostMapping(value = "/carsAndCustomers/cars", params = "action=edit")
+  /*@PostMapping(value = "/carsAndCustomers/cars", params = "action=edit")
   public ModelAndView edit(@RequestParam String id) {
     System.out.println(carRepository.getOne(Integer.valueOf(id)));
     ModelAndView mav = new ModelAndView();
     mav.addObject("message", id);
     //mav.setViewName("show");
     return mav;
+
+  }*/
+
+  @RequestMapping("/carsAndCustomers/cars/{id}")
+  public String view(@PathVariable("id") Integer id, ModelMap modelMap) {
+    Car car = carRepository.getOne(id);
+    modelMap.addAttribute("car", car);
+    return "fragments/editForm :: editView";
 
   }
 

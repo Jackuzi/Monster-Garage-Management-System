@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Monster Garage | Cars </title>
+    <script th:src="@{/plugins/jquery/jquery-3.3.1.js}"></script>
+    <script type="text/javascript" th:src="@{/ajax/AjaxModals.js}"></script>
+
+    <!-- Bootstrap 4 -->
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -17,6 +19,9 @@
     <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+
 </head>
 <body>
 <div class="wrapper">
@@ -64,7 +69,7 @@
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
                            role="tab" aria-controls="nav-profile" aria-selected="false">customer</a>
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                           role="tab" aria-controls="nav-contact" aria-selected="false">cos wymysle</a>w
+                           role="tab" aria-controls="nav-contact" aria-selected="false">cos wymysle</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -105,7 +110,6 @@
                                             </thead>
                                             <tbody id="carsTable">
                                             <tr th:each="car: ${cars}">
-                                                <a class=".btn.btn-app">save</a>
                                                 <td th:text="${car.id}"></td>
                                                 <td th:text="${car.reg}"></td>
                                                 <td th:text="${car.make}"></td>
@@ -114,12 +118,11 @@
                                                 <td th:text="${car.mileage}"></td>
                                                 <td th:text="${car.color}"></td>
                                                 <td>
-
-                                                    <input type="hidden" name="id" th:value="${car.id}"/>
-                                                    <button type="submit" name="action"
+                                                    <button type="submit" name="action" method="Post"
                                                             class="fa fa-edit nav-icon btn-sm btn-info"
                                                             data-toggle="modal"
-                                                            data-target="#editModal">
+                                                            data-target="#viewCars"
+                                                            th:onclick="'javascript:viewCarsModal(\'' + ${car.id} +'\');'">
                                                     </button>
 
                                                 </td>
@@ -142,47 +145,12 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-        <div class="modal" id="editModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="#"
-                              method="post">
-
-
-                            <button type="submit" name="action"
-                                    class="fa fa-edit nav-icon btn-sm btn-save"
-                                    th:value="edit">
-                            </button>
-                            <button type="submit" name="action"
-                                    class="fa fa-edit nav-icon btn-sm btn-delete"
-                                    th:value="edit">
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-
-
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="viewCarHolder" th:include="fragments/editForm.html :: editView"></div>
     </div>
 </div>
-<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-<!-- Bootstrap 4 -->
-<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+
 <!-- SlimScroll -->
 <script th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
 <!-- FastClick -->
@@ -192,16 +160,5 @@
 <!-- AdminLTE for demo purposes -->
 <script th:src="@{/dist/js/demo.js}"></script>
 
-
-<script>
-    $(document).ready(function () {
-        $("#tableSearch").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#carsTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
 </body>
 </html>
