@@ -9,7 +9,6 @@ import java.util.List;
 public class CarService {
   @Autowired
   CarRepository repository;
-  //private List<Car> cars = new ArrayList<>(asList(new Car()));
 
   public List<Car> getAllCars() {
     return repository.findAll();
