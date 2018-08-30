@@ -42,7 +42,7 @@
     <div class="content-wrapper" style="min-height: 254.666px;">
         <!-- Content Header (Page header) -->
 
-
+        <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
