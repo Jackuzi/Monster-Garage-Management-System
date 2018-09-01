@@ -67,8 +67,14 @@
                            role="tab" aria-controls="nav-home" aria-selected="true">car</a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
                            role="tab" aria-controls="nav-profile" aria-selected="false">customer</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                           role="tab" aria-controls="nav-contact" aria-selected="false">cos wymysle</a>
+
+                        <button type="submit" name="action"
+                                class="fa fa-plus-square nav-icon btn-sm btn-success"
+                                data-toggle="modal"
+                                data-target="#viewCars"
+                                th:onclick="'javascript:viewCarsModalAdd();'"> New Car
+                        </button>
+
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -91,25 +97,25 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <!-- /.card-header -->
                                     <div class="card-body table-responsive p-0">
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th hidden>ID</th>
                                                 <th>REG</th>
                                                 <th>MAKE</th>
                                                 <th>MODEL</th>
                                                 <th>YEAR</th>
                                                 <th>MILEAGE</th>
                                                 <th>COLOR</th>
+                                                <th>EDIT</th>
+                                                <th>DELETE</th>
                                             </tr>
                                             </thead>
                                             <tbody id="carsTable">
                                             <tr th:each="car: ${cars}">
-                                                <td th:text="${car.id}"></td>
+                                                <td hidden th:text="${car.id}"></td>
                                                 <td th:text="${car.reg}"></td>
                                                 <td th:text="${car.make}"></td>
                                                 <td th:text="${car.model}"></td>
@@ -123,7 +129,14 @@
                                                             data-target="#viewCars"
                                                             th:onclick="'javascript:viewCarsModal(\'' + ${car.id} +'\');'">
                                                     </button>
-
+                                                </td>
+                                                <td>
+                                                    <button type="submit" name="action"
+                                                            class="fa fa-remove nav-icon btn-sm btn-danger"
+                                                            data-toggle="modal"
+                                                            data-target="#viewCars"
+                                                            th:onclick="'javascript:deleteCarConfirmation(\'' + ${car.id} +'\');'">
+                                                    </button>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -146,6 +159,7 @@
         <!-- /.content -->
 
         <div id="viewCarHolder" th:include="fragments/editForm.html :: editView"></div>
+        <div id="deleteHolder" th:include="fragments/deleteConfirmation.html :: deleteConfirmation"></div>
     </div>
 </div>
 

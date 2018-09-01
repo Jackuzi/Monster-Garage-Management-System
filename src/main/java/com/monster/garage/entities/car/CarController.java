@@ -48,7 +48,35 @@ public class CarController {
       return "redirect:/carsAndCustomers/cars";
 
     }
+  }
 
+  @GetMapping("/carsAndCustomers/cars/new")
+  public String newCar(Model model) {
+    model.addAttribute("car", new Car());
+    return "fragments/editForm :: editView";
 
+  }
+
+  @GetMapping("/carsAndCustomers/cars/delete/{id}")
+  public String deleteCarModal(@PathVariable("id") Integer id, Model model) {
+    model.addAttribute("car", carRepository.findById(id));
+    return "fragments/deleteConfirmation :: deleteConfirmation";
+
+  }
+
+  @PostMapping("/carsAndCustomers/cars/delete/{id}")
+  public String deleteCar(@ModelAttribute Car car, RedirectAttributes redirectAttributes) {
+    try {
+      carRepository.delete(car);
+      redirectAttributes.addFlashAttribute("message", "Success. Record Removed");
+      redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+      return "redirect:/carsAndCustomers/cars";
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      redirectAttributes.addFlashAttribute("message", "An error occurred");
+      redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+      return "redirect:/carsAndCustomers/cars";
+    }
   }
 }

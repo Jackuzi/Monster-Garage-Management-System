@@ -1,9 +1,7 @@
 package com.monster.garage.entities.car;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "car")
@@ -11,13 +9,16 @@ public class Car {
 
   @Id
   @Column
-  //@GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   @Column
+  @NotNull
   private String reg;
+  @NotNull
   @Column
   private String make;
   @Column
+  @NotNull
   private String model;
   @Column
   private int year;

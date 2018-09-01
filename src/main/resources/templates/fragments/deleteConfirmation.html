@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="editView">
+<div th:fragment="deleteConfirmation">
     <div class="content-wrapper">
         <section class="content">
-            <div class="modal fade in" id="modal-default">
+            <div class="modal fade in" id="modal-delete">
                 <div class="modal-dialog">
-                    <form action="#" th:object="${car}" th:action="'cars/edit/' +${id}"
+                    <form action="#" th:object="${car}" th:action="'cars/delete/' +${id}"
                           method="post">
                         <div class="modal-content">
-                            <div class="modal-header"><h4 class="modal-title">Edit mode</h4>
+                            <div class="modal-header"><h4 class="modal-title">Are you Sure to remove following
+                                entry?</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span></button>
                             </div>
@@ -18,45 +19,43 @@
                                     <div class="col s12">
 
                                         <div class="row">
-                                            <table class="table table-hover table-bordered">
+                                            <table class="table table-hover table-danger">
                                                 <tbody>
-                                                <tr>
+                                                <tr hidden>
                                                     <td class="table-success">id:</td>
                                                     <td><input type="text" th:field="*{id}" readonly="readonly"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="table-success">model:</td>
-                                                    <td><input type="text" th:field="*{model}"
-                                                               contenteditable="true" required="required"/></td>
-                                                </tr>
-                                                <tr>
                                                     <td class="table-success">make:</td>
-                                                    <td><input type="text" th:field="*{make}" contenteditable="true"
-                                                               required="required"/>
+                                                    <td><input type="text" th:field="*{make}" readonly="readonly"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="table-success">model:</td>
+                                                    <td><input type="text" th:field="*{model}"
+                                                               readonly="readonly"/></td>
+                                                </tr>
+                                                <tr>
                                                     <td class="table-success">reg:</td>
-                                                    <td><input type="text" th:field="*{reg}" contenteditable="true"
-                                                               required="required"/>
+                                                    <td><input type="text" th:field="*{reg}" readonly="readonly"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-success">year:</td>
-                                                    <td><input type="text" th:field="*{year}" contenteditable="true"/>
+                                                    <td><input type="text" th:field="*{year}" readonly="readonly"/>
                                                     </td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="table-success">mileage:</td>
                                                     <td><input type="text" th:field="*{mileage}"
-                                                               contenteditable="true"/></td>
+                                                               readonly="readonly"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-success">color:</td>
                                                     <td><input type="text" th:field="*{color}"
-                                                               contenteditable="true"/></td>
+                                                               readonly="readonly"/></td>
                                                 </tr>
 
                                                 </tbody>
@@ -69,7 +68,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close
                                 </button>
-                                <button type="submit" value="Submit" class="btn btn-primary">Save changes</button>
+                                <button type="submit" value="Submit" class="btn btn-danger">Delete car</button>
                             </div>
                         </div>
                     </form>
