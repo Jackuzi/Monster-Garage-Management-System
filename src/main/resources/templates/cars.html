@@ -114,6 +114,7 @@
                                             </tr>
                                             </thead>
                                             <tbody id="carsTable">
+                                            <img th:src="@{/loadings/loader3.gif}" id="img" style="display:none"/>
                                             <tr th:each="car: ${cars}">
                                                 <td hidden th:text="${car.id}"></td>
                                                 <td th:text="${car.reg}"></td>

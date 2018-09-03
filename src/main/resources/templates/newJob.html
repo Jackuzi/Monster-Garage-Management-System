@@ -55,7 +55,45 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <p>new job</p>
+                <form action="#" th:object="${job}" th:action="'job/new/add'"
+                      method="post">
+                    <div>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="table-success">description:</td>
+                                <td><input type="text" th:field="*{description}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-success">date:</td>
+                                <td><input type="text" th:field="*{date}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-success">rate</td>
+                                <td><input type="text" th:field="*{rate}"
+                                /></td>
+                            </tr>
+                            <tr>
+                                <td class="table-success">part name</td>
+                                <td><input type="text" th:field="*{parts[0].name}"
+                                /></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div>
+                        <button type="reset" value="Reset" class="btn btn-default pull-left">Reset form
+                        </button>
+                        <button type="submit" value="Submit" class="btn btn-success">Add new job</button>
+                    </div>
+
+                </form>
 
             </div><!-- /.container-fluid -->
         </section>
