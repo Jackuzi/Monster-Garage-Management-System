@@ -2,9 +2,14 @@ package com.monster.garage.entities.car;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Entity
 @Table(name = "car")
+@SecondaryTables({
+                         @SecondaryTable(name = "mot"),
+
+                 })
 public class Car {
 
   @Id
@@ -27,6 +32,11 @@ public class Car {
   @Column
   private String color;
 
+  //MOT Table
+  @Column(name = "dateDone", table = "mot")
+  private Date dateDone;
+
+
   public Car() {
     super();
   }
@@ -39,6 +49,7 @@ public class Car {
     this.year = year;
     this.mileage = mileage;
     this.color = color;
+
   }
 
   public Car(int id) {
@@ -111,5 +122,14 @@ public class Car {
 
   public void setColor(String color) {
     this.color = color;
+  }
+
+
+  public Date getDateDone() {
+    return dateDone;
+  }
+
+  public void setDateDone(Date dateDone) {
+    this.dateDone = dateDone;
   }
 }

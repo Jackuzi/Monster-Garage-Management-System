@@ -1,12 +1,12 @@
-package com.monster.garage.entities.parts;
+package com.monster.garage.entities.part;
 
 import com.monster.garage.entities.job.Job;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "parts")
-public class Parts {
+@Table(name = "part")
+public class Part {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,10 +1,10 @@
-package com.monster.garage.entities.parts;
+package com.monster.garage.entities.part;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PartsController {
+public class PartController {
 
   @RequestMapping("/partsOrdered")
   public String partsOrdered() {

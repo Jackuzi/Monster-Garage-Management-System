@@ -1,6 +1,8 @@
 package com.monster.garage.entities.job;
 
-import com.monster.garage.entities.parts.Parts;
+import com.monster.garage.entities.car.Car;
+import com.monster.garage.entities.customer.Customer;
+import com.monster.garage.entities.part.Part;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +25,12 @@ public class Job {
   private String date;
 
   @OneToMany
-  private List<Parts> parts;
+  private List<Part> parts;
+
+  @ManyToOne(cascade = CascadeType.ALL)
+  private Car car;
+  @ManyToOne(cascade = CascadeType.ALL)
+  private Customer customer;
   //customer join
   /*
   @Column(name = "name", table = "customer")
@@ -121,11 +128,28 @@ public class Job {
   }
 
 
-  public List<Parts> getParts() {
+  public List<Part> getParts() {
     return parts;
   }
 
-  public void setParts(List<Parts> parts) {
+  public void setParts(List<Part> parts) {
     this.parts = parts;
+  }
+
+
+  public Car getCar() {
+    return car;
+  }
+
+  public void setCar(Car car) {
+    this.car = car;
+  }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
   }
 }

@@ -57,440 +57,222 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="#" th:object="${job}" th:action="'job/new/add'"
+                <form class="form-control form-control-sm" action="#" th:object="${job}" th:action="'job/new/add'"
                       method="post">
-                    <div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td class="table-success">description:</td>
-                                <td><input type="text" th:field="*{description}"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-success">date:</td>
-                                <td><input type="text" th:field="*{date}"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-success">rate</td>
-                                <td><input type="text" th:field="*{rate}"
-                                /></td>
-                            </tr>
-                            <tr>
-                                <td class="table-success">part name</td>
-                                <td><input type="text" th:field="*{parts[0].name}"
-                                /></td>
-                            </tr>
+                    <!-- Custom Form Start -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    <a data-toggle="collapse" href="#collapse-example" aria-expanded="true"
+                                       aria-controls="collapse-example" id="heading-example" class="d-block">
+                                        <i class="fa fa-chevron-down pull-right"></i>
+                                        Job Info
+                                    </a>
+                                </div>
+                                <div id="collapse-example" class="collapse show"
+                                     aria-labelledby="heading-example">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="description" class="col-2 col-form-label">Description</label>
+                                            <div class="col-10">
+                                            <textarea th:field="*{description}" class="form-control" type="text"
+                                                      value=""
+                                                      id="description"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="dateInput" class="col-2 col-form-label">Date</label>
+                                            <div class="col-10">
+                                                <input th:field="*{date}" class="form-control" type="date"
+                                                       id="dateInput">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-                            </tbody>
-                        </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    Labour
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="repairTime" class="col-2 col-form-label">Time</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="time" value="" id="repairTime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rate" class="col-2 col-form-label">Rate</label>
+                                        <div class="col-10">
+                                            <input th:field="*{rate}" class="form-control" type="text" value=""
+                                                   id="rate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="total" class="col-2 col-form-label">Total</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="total">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    Car Info
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="reg" class="col-2 col-form-label">Reg</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="reg">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group row">
+                                        <label for="make" class="col-2 col-form-label">Make</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="make">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="model" class="col-2 col-form-label">Model</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="model">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="year" class="col-2 col-form-label">Year</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="year">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="mileage" class="col-2 col-form-label">Mileage</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="mileage">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="color" class="col-2 col-form-label">Color</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="color">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    Parts
+                                    <input type="radio" class="radio-gr">
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row ">
+                                        <label for="partName" class="col-2 col-form-label">Name</label>
+                                        <div class="col-10">
+                                            <input th:field="*{parts[0].name}" class="form-control" type="text" value=""
+                                                   id="partName">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="quantity" class="col-2 col-form-label">Quantity</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="number" value="" id="quantity">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="invoiceNumber" class="col-2 col-form-label">Invoice Number</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="invoiceNumber">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+
+                                        <label for="price" class="col-2 col-form-label">Price</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="price">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="supplier" class="col-2 col-form-label">Supplier</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="supplier">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="brand" class="col-2 col-form-label">Brand</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="" id="brand">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="btn-group ">
+
+                                    <button type="button" class="btn-warning" data-toggle="collapse"
+                                            data-target="#collapse1">
+                                        Parts list
+                                        <i class="nav-icon fa fa-arrow-circle-down"></i>
+                                    </button>
+                                    <button type="button" class="btn-success">
+                                        Add to list
+                                        <i class="nav-icon fa fa-plus-circle"></i>
+                                    </button>
+
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">One</li>
+                                        <li class="list-group-item">Two</li>
+                                        <li class="list-group-item">Three</li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                Customer
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="customerName" class="col-2 col-form-label">Name</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" value="" id="customerName">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="customerSurname" class="col-2 col-form-label">Surname</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" value="" id="customerSurname">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div>
-                        <button type="reset" value="Reset" class="btn btn-default pull-left">Reset form
+                        <button type="reset" value="Reset" class="btn btn-danger">Reset form
                         </button>
                         <button type="submit" value="Submit" class="btn btn-success">Add new job</button>
-                    </div>
-
-                    <!-- Custom Form Start -->
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            Job Info
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="description" class="col-2 col-form-label">Description</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="text" value=""
-                                           id="description">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="dateInput" class="col-2 col-form-label">Date</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="date" id="dateInput">
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            Car Info
-                            
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-2 col-form-label">Text</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="text" value="Artisanal kale"
-                                    >
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-search-input" class="col-2 col-form-label">Search</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="search" value="How do I shoot web"
-                                    >
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="email" value="bootstrap@example.com"
-                                    >
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-url-input" class="col-2 col-form-label">URL</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="url" value="https://getbootstrap.com"
-                                    >
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="tel" value="1-(555)-555-5555"
-                                    >
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-password-input" class="col-2 col-form-label">Password</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="password" value="hunter2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-number-input" class="col-2 col-form-label">Number</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="number" value="42">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-datetime-local-input" class="col-2 col-form-label">Date and
-                                    time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="date" value="2011-08-19">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-month-input" class="col-2 col-form-label">Month</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="month" value="2011-08">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-week-input" class="col-2 col-form-label">Week</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="week" value="2011-W33">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-time-input" class="col-2 col-form-label">Time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="time" value="13:45:00">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-color-input" class="col-2 col-form-label">Color</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="color" value="#563d7c">
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            Parts
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-2 col-form-label">Text</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="text" value="Artisanal kale">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-search-input" class="col-2 col-form-label">Search</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="search" value="How do I shoot web">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="email" value="bootstrap@example.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-url-input" class="col-2 col-form-label">URL</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="url" value="https://getbootstrap.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="tel" value="1-(555)-555-5555">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-password-input" class="col-2 col-form-label">Password</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="password" value="hunter2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-number-input" class="col-2 col-form-label">Number</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="number" value="42">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-datetime-local-input" class="col-2 col-form-label">Date and
-                                    time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="date" value="2011-08-19">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-month-input" class="col-2 col-form-label">Month</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="month" value="2011-08">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-week-input" class="col-2 col-form-label">Week</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="week" value="2011-W33">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-time-input" class="col-2 col-form-label">Time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="time" value="13:45:00">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-color-input" class="col-2 col-form-label">Color</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="color" value="#563d7c">
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            Labour
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-2 col-form-label">Text</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="text" value="Artisanal kale">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-search-input" class="col-2 col-form-label">Search</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="search" value="How do I shoot web">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="email" value="bootstrap@example.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-url-input" class="col-2 col-form-label">URL</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="url" value="https://getbootstrap.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="tel" value="1-(555)-555-5555">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-password-input" class="col-2 col-form-label">Password</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="password" value="hunter2">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-number-input" class="col-2 col-form-label">Number</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="number" value="42">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-datetime-local-input" class="col-2 col-form-label">Date and
-                                    time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="date" value="2011-08-19">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-month-input" class="col-2 col-form-label">Month</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="month" value="2011-08">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-week-input" class="col-2 col-form-label">Week</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="week" value="2011-W33">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-time-input" class="col-2 col-form-label">Time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="time" value="13:45:00">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-color-input" class="col-2 col-form-label">Color</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="color" value="#563d7c">
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            Customer
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-2 col-form-label">Text</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="text" value="Artisanal kale">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-search-input" class="col-2 col-form-label">Search</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="search" value="How do I shoot web">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="email" value="bootstrap@example.com">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-url-input" class="col-2 col-form-label">URL</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="url" value="https://getbootstrap.com">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="tel" value="1-(555)-555-5555">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-password-input" class="col-2 col-form-label">Password</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="password" value="hunter2">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-number-input" class="col-2 col-form-label">Number</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="number" value="42">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-datetime-local-input" class="col-2 col-form-label">Date and
-                                    time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00">
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="date" value="2011-08-19">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-month-input" class="col-2 col-form-label">Month</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="month" value="2011-08">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-week-input" class="col-2 col-form-label">Week</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="week" value="2011-W33">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-time-input" class="col-2 col-form-label">Time</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="time" value="13:45:00">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-color-input" class="col-2 col-form-label">Color</label>
-                                <div class="col-10">
-                                    <input class="form-control" type="color" value="#563d7c">
-                                </div>
-                            </div>
-
-                        </div>
-
-
                     </div>
                 </form>
 
