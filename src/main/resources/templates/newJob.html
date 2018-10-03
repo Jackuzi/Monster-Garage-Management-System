@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +57,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form class="form-control form-control-sm" action="#" th:object="${job}" th:action="'job/new/add'"
+                <form action="#" class="form-control form-control-sm" th:action="'new/add'" th:object="${job}"
                       method="post">
                     <!-- Custom Form Start -->
                     <div class="row">
@@ -104,7 +104,9 @@
                                     <div class="form-group row">
                                         <label for="repairTime" class="col-2 col-form-label">Time</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="time" value="" id="repairTime">
+                                            <input class="form-control" id="repairTime" th:field="*{repairTime}"
+                                                   type="time"
+                                                   value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -117,7 +119,8 @@
                                     <div class="form-group row">
                                         <label for="total" class="col-2 col-form-label">Total</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="total">
+                                            <input class="form-control" id="total" th:field="*{total}" type="text"
+                                                   value="">
                                         </div>
                                     </div>
                                 </div>
@@ -135,38 +138,45 @@
                                     <div class="form-group row">
                                         <label for="reg" class="col-2 col-form-label">Reg</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="reg">
+                                            <input class="form-control" id="reg" th:field="*{car.reg}" type="text"
+                                                   value="">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="make" class="col-2 col-form-label">Make</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="make">
+                                            <input class="form-control" id="make" th:field="*{car.make}" type="text"
+                                                   value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="model" class="col-2 col-form-label">Model</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="model">
+                                            <input class="form-control" id="model" th:field="*{car.model}" type="text"
+                                                   value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="year" class="col-2 col-form-label">Year</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="year">
+                                            <input class="form-control" id="year" th:field="*{car.year}" type="text"
+                                                   value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="mileage" class="col-2 col-form-label">Mileage</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="mileage">
+                                            <input class="form-control" id="mileage" th:field="*{car.mileage}"
+                                                   type="text"
+                                                   value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="color" class="col-2 col-form-label">Color</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="" id="color">
+                                            <input class="form-control" id="color" th:field="*{car.color}" type="text"
+                                                   value="">
                                         </div>
                                     </div>
 
@@ -185,8 +195,10 @@
                                     <div class="form-group row ">
                                         <label for="partName" class="col-2 col-form-label">Name</label>
                                         <div class="col-10">
-                                            <input th:field="*{parts[0].name}" class="form-control" type="text" value=""
-                                                   id="partName">
+                                            <input class="form-control"
+                                                   id=""
+                                                   type="text"
+                                                   value="">
                                         </div>
                                     </div>
 
@@ -237,11 +249,19 @@
 
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">One</li>
-                                        <li class="list-group-item">Two</li>
-                                        <li class="list-group-item">Three</li>
-                                    </ul>
+                                    <p>hello</p>
+                                    <div class="card-body" th:each="part, itemStat :*{parts}">
+                                        <div class="form-group row ">
+                                            <label class="col-2 col-form-label" for="partName">Name</label>
+                                            <div class="col-10">
+                                                <input class="form-control"
+                                                       id="partName"
+                                                       th:field="*{parts[__${itemStat.index}__].name}"
+                                                       type="text"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
 

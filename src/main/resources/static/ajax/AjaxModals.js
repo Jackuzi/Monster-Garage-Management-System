@@ -1,6 +1,6 @@
 //passing id for edit modal dialog
 
-
+//editing car
 function viewCarsModal(id) {
     console.log(id);
     $.ajax({
@@ -14,6 +14,7 @@ function viewCarsModal(id) {
     });
 }
 
+//new car adding
 function viewCarsModalAdd() {
     $.ajax({
         url: "/carsAndCustomers/cars/new",
@@ -26,6 +27,7 @@ function viewCarsModalAdd() {
     });
 }
 
+//deleting car
 function deleteCarConfirmation(id) {
     console.log(id);
     $.ajax({

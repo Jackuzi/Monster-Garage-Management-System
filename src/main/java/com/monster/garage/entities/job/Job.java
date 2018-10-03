@@ -24,7 +24,7 @@ public class Job {
   @Column
   private String date;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   private List<Part> parts;
 
   @ManyToOne(cascade = CascadeType.ALL)
