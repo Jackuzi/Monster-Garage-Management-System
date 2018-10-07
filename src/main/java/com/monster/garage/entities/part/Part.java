@@ -31,6 +31,7 @@ public class Part {
   private String brand;
 
   @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "JOBID", referencedColumnName = "ID")
   private Job job;
 
   public Integer getId() {
@@ -87,6 +88,14 @@ public class Part {
 
   public void setBrand(String brand) {
     this.brand = brand;
+  }
+
+  public Job getJob() {
+    return job;
+  }
+
+  public void setJob(Job job) {
+    this.job = job;
   }
 }
 

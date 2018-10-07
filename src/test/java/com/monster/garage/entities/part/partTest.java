@@ -52,7 +52,7 @@ public class partTest {
       part.setBrand("x" + i);
       parts.add(part);
     }
-    job.setParts(parts);
+    // job.setParts(parts);
     em.persist(job);
     parts = partRepository.findAll();
     List<Job> jobs = jobRepository.findAll();

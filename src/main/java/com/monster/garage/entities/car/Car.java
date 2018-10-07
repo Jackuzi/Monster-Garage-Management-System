@@ -1,15 +1,12 @@
 package com.monster.garage.entities.car;
 
+import com.monster.garage.entities.mot.Mot;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 
 @Entity
 @Table(name = "car")
-@SecondaryTables({
-                         @SecondaryTable(name = "mot"),
-
-                 })
 public class Car {
 
   @Id
@@ -33,8 +30,9 @@ public class Car {
   private String color;
 
   //MOT Table
-  @Column(name = "dateDone", table = "mot")
-  private Date dateDone;
+  @OneToOne
+  @JoinColumn(name = "MOTID", referencedColumnName = "ID")
+  private Mot mot;
 
 
   public Car() {
@@ -125,11 +123,11 @@ public class Car {
   }
 
 
-  public Date getDateDone() {
-    return dateDone;
+  public Mot getMot() {
+    return mot;
   }
 
-  public void setDateDone(Date dateDone) {
-    this.dateDone = dateDone;
+  public void setMot(Mot mot) {
+    this.mot = mot;
   }
 }

@@ -9,6 +9,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script th:src="@{/plugins/jquery/jquery-3.3.1.js}"></script>
+    <script th:src="@{/ajax/AjaxModals.js}" type="text/javascript"></script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -105,7 +106,7 @@
                                         <label for="repairTime" class="col-2 col-form-label">Time</label>
                                         <div class="col-10">
                                             <input class="form-control" id="repairTime" th:field="*{repairTime}"
-                                                   type="time"
+                                                   type="number"
                                                    value="">
                                         </div>
                                     </div>
@@ -196,7 +197,7 @@
                                         <label for="partName" class="col-2 col-form-label">Name</label>
                                         <div class="col-10">
                                             <input class="form-control"
-                                                   id=""
+                                                   id="partName"
                                                    type="text"
                                                    value="">
                                         </div>
@@ -242,24 +243,19 @@
                                         Parts list
                                         <i class="nav-icon fa fa-arrow-circle-down"></i>
                                     </button>
-                                    <button type="button" class="btn-success">
+                                    <button class="btn-success" th:onclick="'javascript:addToPartsList();'"
+                                            type="button">
                                         Add to list
                                         <i class="nav-icon fa fa-plus-circle"></i>
                                     </button>
+
 
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
                                     <p>hello</p>
                                     <div class="card-body" th:each="part, itemStat :*{parts}">
-                                        <div class="form-group row ">
-                                            <label class="col-2 col-form-label" for="partName">Name</label>
-                                            <div class="col-10">
-                                                <input class="form-control"
-                                                       id="partName"
-                                                       th:field="*{parts[__${itemStat.index}__].name}"
-                                                       type="text"
-                                                       value="">
-                                            </div>
+                                        <div class="form-group row " id="partsListContainer">
+
                                         </div>
                                     </div>
 
@@ -277,13 +273,17 @@
                                 <div class="form-group row">
                                     <label for="customerName" class="col-2 col-form-label">Name</label>
                                     <div class="col-10">
-                                        <input class="form-control" type="text" value="" id="customerName">
+                                        <input class="form-control" id="customerName" th:field="*{customer.name}"
+                                               type="text"
+                                               value="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="customerSurname" class="col-2 col-form-label">Surname</label>
                                     <div class="col-10">
-                                        <input class="form-control" type="text" value="" id="customerSurname">
+                                        <input class="form-control" id="customerSurname" th:field="*{customer.surname}"
+                                               type="text"
+                                               value="">
                                     </div>
                                 </div>
                             </div>

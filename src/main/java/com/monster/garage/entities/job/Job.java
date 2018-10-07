@@ -24,52 +24,22 @@ public class Job {
   @Column
   private String date;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "job")
   private List<Part> parts;
 
   @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "CARID", referencedColumnName = "ID")
   private Car car;
-  @ManyToOne(cascade = CascadeType.ALL)
-  private Customer customer;
-  //customer join
-  /*
-  @Column(name = "name", table = "customer")
-  private String custName;
-  @Column(name = "surname", table = "customer")
-  private String custSurname;
-  */
-  //car join
-  /*
-  @Column(name = "reg", table = "car")
-  private String reg;
-  @Column(name = "make", table = "car")
-  private String make;
-  @Column(name = "model", table = "car")
-  private String model;
-  @Column(name = "year", table = "car")
-  private int year;
-  @Column(name = "mileage", table = "car")
-  private int mileage;
-  @Column(name = "color", table = "car")
-  private String color;
-  */
-  //labour join
 
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "labourId", table = "labour")
-  private Integer labourId;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "CUSTOMERID", referencedColumnName = "ID")
+  private Customer customer;
   @Column(name = "repairTime", table = "labour")
   private int repairTime;
   @Column(name = "rate", table = "labour")
   private double rate;
   @Column(name = "total", table = "labour")
   private double total;
-/*
-  @Column
-  private Integer customerId;
-  @Column
-  private Integer carId;
-  */
 
   public Integer getId() {
     return id;
@@ -95,13 +65,6 @@ public class Job {
     this.date = date;
   }
 
-  public Integer getLabourId() {
-    return labourId;
-  }
-
-  public void setLabourId(Integer labourId) {
-    this.labourId = labourId;
-  }
 
   public int getRepairTime() {
     return repairTime;
@@ -128,15 +91,6 @@ public class Job {
   }
 
 
-  public List<Part> getParts() {
-    return parts;
-  }
-
-  public void setParts(List<Part> parts) {
-    this.parts = parts;
-  }
-
-
   public Car getCar() {
     return car;
   }
@@ -151,5 +105,13 @@ public class Job {
 
   public void setCustomer(Customer customer) {
     this.customer = customer;
+  }
+
+  public List<Part> getParts() {
+    return parts;
+  }
+
+  public void setParts(List<Part> parts) {
+    this.parts = parts;
   }
 }
