@@ -17,19 +17,19 @@ public class JobController {
   @GetMapping("/job/new")
   public String jobView(Model model) {
     model.addAttribute("job", new Job());
-    //System.out.println("hello" + Arrays.asList(new CarService().getAllCars().get(1)));
     return "newJob";
   }
 
   @GetMapping("/job/manage")
-  public String jobManageView() {
+  public String jobManageView(Model model) {
+    //model.addAttribute("job", new Job());
+    model.addAttribute("jobs", jobRepository.findAll());
     //System.out.println("hello" + Arrays.asList(new CarService().getAllCars().get(1)));
     return "manageJobs";
   }
 
   @PostMapping("/job/new/add")
   public String jobAdd(@ModelAttribute Job job, RedirectAttributes redirectAttributes) {
-    //System.out.println("hello" + Arrays.asList(new CarService().getAllCars().get(1)));
     try {
       jobRepository.save(job);
       redirectAttributes.addFlashAttribute("message", "Success. Record updated");
@@ -43,6 +43,7 @@ public class JobController {
     }
 
   }
+
 
 }
 

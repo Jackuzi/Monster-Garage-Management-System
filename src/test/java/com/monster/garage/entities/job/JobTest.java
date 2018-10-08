@@ -3,7 +3,6 @@ package com.monster.garage.entities.job;
 import com.google.gson.Gson;
 import com.monster.garage.entities.car.Car;
 import com.monster.garage.entities.customer.Customer;
-import com.monster.garage.entities.mot.Mot;
 import com.monster.garage.entities.part.Part;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,9 +37,6 @@ public class JobTest {
     car.setMileage(1);
     car.setColor("x");
     //car.setMotId();
-    Mot mot = new Mot();
-    mot.setDateDone(new Date(new java.util.Date().getTime()));
-    car.setMot(mot);
     //part.setId(0);
     part.setName("x");
     part.setQuantity("1");

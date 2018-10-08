@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -78,7 +77,6 @@
                                             <label for="description" class="col-2 col-form-label">Description</label>
                                             <div class="col-10">
                                             <textarea th:field="*{description}" class="form-control" type="text"
-                                                      value=""
                                                       id="description"></textarea>
                                             </div>
                                         </div>
@@ -253,8 +251,26 @@
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
                                     <p>hello</p>
-                                    <div class="card-body" th:each="part, itemStat :*{parts}">
-                                        <div class="form-group row " id="partsListContainer">
+                                    <div class="form-group row " id="partsListContainer">
+                                        <div class="card-body" th:each="part, itemStat :*{parts}">
+                                            <input class="form-control"
+                                                   th:field="*{parts[__${itemStat.index}__].name}"
+                                                   type="text" value=""/>
+                                            <input class="form-control"
+                                                   th:field="*{parts[__${itemStat.index}__].quantity}"
+                                                   type="text" value=""/>
+                                            <input class="form-control"
+                                                   th:field="*{parts[__${itemStat.index}__].invoiceNumber}"
+                                                   type="text" value=""/>
+                                            <input class="form-control"
+                                                   th:field="*{parts[__${itemStat.index}__].price}"
+                                                   type="text" value=""/>
+                                            <input class="form-control"
+                                                   th:field="*{parts[__${itemStat.index}__].supplier}"
+                                                   type="text" value=""/>
+                                            <input class="form-control"
+                                                   th:field="*{parts[__${itemStat.index}__].brand}"
+                                                   type="text" value=""/>
 
                                         </div>
                                     </div>
@@ -264,6 +280,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-header bg-secondary text-white">

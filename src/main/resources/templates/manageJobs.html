@@ -36,29 +36,104 @@
         <!-- Content Header (Page header) -->
 
 
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Search Car/Customer</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Simple Tables</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <p>manage jobs</p>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div aria-labelledby="nav-home-tab" class="tab-pane fade show active" id="nav-home" role="tabpanel">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Search car</h3>
+                                        <div class="card-tools">
+                                            <div class="input-group input-group-sm" style="width: 150px;">
+                                                <input class="form-control float-right" id="inputFilter"
+                                                       name="table_search"
+                                                       placeholder="Search" type="text">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-default" type="submit"><i
+                                                            class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th hidden>ID</th>
+                                                <th>DESCRIPTION</th>
+                                                <th>DATE</th>
+                                                <th>CUSTOMER NAME</th>
+                                                <th>CUSTOMER SURNAME</th>
+                                                <th>REG</th>
+                                                <th hidden>CAR ID</th>
+                                                <th>REPAIR TIME</th>
+                                                <th>RATE</th>
+                                                <th>TOTAL</th>
+                                                <th>PARTS</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="carsTable">
+                                            <tr th:each="job: ${jobs}">
+                                                <td hidden th:text="${job.id}"></td>
+                                                <td th:text="${job.description}"></td>
+                                                <td th:text="${job.date}"></td>
+                                                <td th:text="${job?.customer?.name}"></td>
+                                                <td th:text="${job?.customer?.surname}"></td>
+                                                <td th:text="${job?.car?.reg}"></td>
+                                                <td hidden th:text="${job?.car?.id}"></td>
+                                                <td th:text="${job?.repairTime}"></td>
+                                                <td th:text="${job?.rate}"></td>
+                                                <td th:text="${job?.total}"></td>
+
+                                                <td th:text="${job.getPartsName()}"></td>
+
+                                                <td>
+                                                    <button class="fa fa-edit nav-icon btn-sm btn-info"
+                                                            data-target="#viewCars"
+                                                            data-toggle="modal"
+                                                            name="action"
+                                                            th:onclick="'javascript:viewJobModal(\'' + ${job.id} +'\');'"
+                                                            type="submit">
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button class="fa fa-remove nav-icon btn-sm btn-danger"
+                                                            data-target="#viewCars"
+                                                            data-toggle="modal"
+                                                            name="action"
+                                                            th:onclick="'javascript:deleteJobConfirmation(\'' + ${job.id} +'\');'"
+                                                            type="submit">
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div><!-- /.row -->
+                    </div>
+                    <div aria-labelledby="nav-profile-tab" class="tab-pane fade" id="nav-profile" role="tabpanel">...
+                    </div>
+                    <div aria-labelledby="nav-contact-tab" class="tab-pane fade" id="nav-contact" role="tabpanel">...
+                    </div>
+                </div>
 
             </div><!-- /.container-fluid -->
         </section>
+        <!-- /.content
+
+        <div id="viewCarHolder" th:include="fragments/editJobForm.html :: editJobView"></div>
+        <div id="deleteHolder" th:include="fragments/deleteJobConfirmation.html :: deleteJobConfirmation"></div>
+        -->
+
         <!-- /.content -->
     </div>
 </div>

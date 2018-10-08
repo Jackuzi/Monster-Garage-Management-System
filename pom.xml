@@ -133,5 +133,11 @@
         </pluginRepository>
     </pluginRepositories>
 
-
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Internal repo</name>
+            <url>file:///home/</url>
+        </repository>
+    </distributionManagement>
 </project>

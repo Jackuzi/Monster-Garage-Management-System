@@ -97,6 +97,17 @@ public class Part {
   public void setJob(Job job) {
     this.job = job;
   }
+
+  public String toString() {
+    String part = "Invoice number: " + getInvoiceNumber()
+            + "\n Name: " + getName()
+            + "\n Brand: " + getBrand()
+            + "\n Supplier: " + getSupplier()
+            + "\n Unit Price: " + getPrice()
+            + "\n Quantity: " + getQuantity();
+    return part;
+  }
+
 }
 
 

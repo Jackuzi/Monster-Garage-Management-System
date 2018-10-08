@@ -111,6 +111,18 @@ public class Job {
     return parts;
   }
 
+  public String getPartsName() {
+    String invoice = "";
+    String name = "";
+    for (Part p : parts
+    ) {
+      name += "|| Invoice: " + p.getInvoiceNumber() + ", " + "name: " + p.getName() + " ";
+
+
+    }
+    return name;
+  }
+
   public void setParts(List<Part> parts) {
     this.parts = parts;
   }
