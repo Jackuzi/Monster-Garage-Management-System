@@ -60,7 +60,7 @@ $(document).ready(function () {
 });
 
 //creating parts list
-var index = 0;
+var index = 1;
 
 function addToPartsList() {
     var name = $("#partName").val();
@@ -70,15 +70,16 @@ function addToPartsList() {
     var supplier = $("#supplier").val();
     var brand = $("#brand").val();
 
-
     $(
-        '<div class="col-10" > <input class="form-control" field="parts[' + index + '].name"' +
-        ' type="text" value="' + name + '"> <input class="form-control" field="parts[' + index + '].quantity"' +
-        ' type="text" value="' + quantity + '"> <input class="form-control" field="parts[' + index + '].invoiceNumber"' +
-        ' type="text" value="' + invoice + '"> <input class="form-control" field="parts[' + index + '].price"' +
-        ' type="text" value="' + price + '"> <input class="form-control" field="parts[' + index + '].supplier"' +
-        ' type="text" value="' + supplier + '"> <input class="form-control" field="parts[' + index + '].brand"' +
-        ' type="text" value="' + brand + '"> </div>'
+        '<div class="col-10" >' +
+        ' <input class="form-control" id="parts' + index + '.name" name="parts[' + index + '].name" type="text" value="' + name + '"> ' +
+        '<input class="form-control" id="parts' + index + '.quantity" name="parts[' + index + '].quantity" type="text" value="' + quantity + '"> ' +
+        '<input class="form-control" id="parts' + index + '.invoiceNumber" name="parts[' + index + '].invoiceNumber" type="text" value="' + invoice + '"> ' +
+        '<input class="form-control" id="parts' + index + '.price" name="parts[' + index + '].price" type="text" value="' + price + '"> ' +
+        '<input class="form-control" id="parts' + index + '.supplier" name="parts[' + index + '].supplier" type="text" value="' + supplier + '"> ' +
+        '<input class="form-control" id="parts' + index + '.brand" name="parts[' + index + '].brand" type="text"' +
+        ' value="' + brand + '"> ' +
+        '</div>'
     ).appendTo('#collapse1');
     index++;
 }

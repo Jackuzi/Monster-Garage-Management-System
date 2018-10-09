@@ -1,6 +1,8 @@
 package com.monster.garage.entities.job;
 
 
+import com.monster.garage.entities.part.Part;
+import com.monster.garage.entities.part.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class JobController {
   @Autowired
   JobRepository jobRepository;
+  @Autowired
+  PartRepository partRepository;
 
   @GetMapping("/job/new")
   public String jobView(Model model) {
-    model.addAttribute("job", new Job());
+    Job job = new Job();
+    job.addPart(new Part());
+    model.addAttribute("job", job);
     return "newJob";
   }
 
@@ -31,6 +37,8 @@ public class JobController {
   @PostMapping("/job/new/add")
   public String jobAdd(@ModelAttribute Job job, RedirectAttributes redirectAttributes) {
     try {
+      System.out.println(job.getParts());
+      partRepository.saveAll(job.getParts());
       jobRepository.save(job);
       redirectAttributes.addFlashAttribute("message", "Success. Record updated");
       redirectAttributes.addFlashAttribute("alertClass", "alert-success");

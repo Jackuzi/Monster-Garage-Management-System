@@ -5,6 +5,7 @@ import com.monster.garage.entities.customer.Customer;
 import com.monster.garage.entities.part.Part;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,17 +15,19 @@ import java.util.List;
                          @SecondaryTable(name = "labour")
                  })
 public class Job {
-
   @Id
   @Column
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
+
   @Column
   private String description;
+
   @Column
   private String date;
 
-  @OneToMany(mappedBy = "job")
+  @OneToMany
+  @JoinColumn(name = "JOBID", referencedColumnName = "ID")
   private List<Part> parts;
 
   @ManyToOne(cascade = CascadeType.ALL)
@@ -34,12 +37,20 @@ public class Job {
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "CUSTOMERID", referencedColumnName = "ID")
   private Customer customer;
+
   @Column(name = "repairTime", table = "labour")
   private int repairTime;
+
   @Column(name = "rate", table = "labour")
   private double rate;
+
   @Column(name = "total", table = "labour")
   private double total;
+
+  public Job() {
+    this.parts = new ArrayList<>();
+  }
+
 
   public Integer getId() {
     return id;
@@ -90,7 +101,6 @@ public class Job {
     this.total = total;
   }
 
-
   public Car getCar() {
     return car;
   }
@@ -111,14 +121,15 @@ public class Job {
     return parts;
   }
 
+  public void addPart(Part part) {
+    this.parts.add(part);
+  }
+
   public String getPartsName() {
-    String invoice = "";
     String name = "";
     for (Part p : parts
     ) {
       name += "|| Invoice: " + p.getInvoiceNumber() + ", " + "name: " + p.getName() + " ";
-
-
     }
     return name;
   }

@@ -34,6 +34,19 @@ public class Part {
   @JoinColumn(name = "JOBID", referencedColumnName = "ID")
   private Job job;
 
+  public Part(String name, String quantity, String invoiceNumber, double price, String supplier, String brand, Job job) {
+    this.name = name;
+    this.quantity = quantity;
+    this.invoiceNumber = invoiceNumber;
+    this.price = price;
+    this.supplier = supplier;
+    this.brand = brand;
+    this.job = job;
+  }
+
+  public Part() {
+  }
+
   public Integer getId() {
     return id;
   }
