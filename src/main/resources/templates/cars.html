@@ -42,6 +42,7 @@
     <div class="content-wrapper" style="min-height: 254.666px;">
         <!-- Content Header (Page header) -->
         <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -117,7 +118,7 @@
                                             <img th:src="@{/loadings/loader3.gif}" id="img" style="display:none"/>
                                             <tr th:each="car: ${cars}">
                                                 <td hidden th:text="${car.id}"></td>
-                                                <td th:text="${car.reg}"></td>
+                                                <td th:text="${car.reg}">
                                                 <td th:text="${car.make}"></td>
                                                 <td th:text="${car.model}"></td>
                                                 <td th:text="${car.year}"></td>

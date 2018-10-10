@@ -76,7 +76,7 @@ public class CarController {
       e.printStackTrace();
       redirectAttributes.addFlashAttribute("message", "An error occurred");
       redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
-      return "redirect:/carsAndCustomers/cars";
+      return "redirect:/carsAndCustomers/cars/edit";
     }
   }
 }

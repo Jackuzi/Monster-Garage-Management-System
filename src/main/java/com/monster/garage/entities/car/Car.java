@@ -13,7 +13,7 @@ public class Car {
   @Column
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
-  @Column
+  @Column(unique = true)
   @NotNull
   private String reg;
   @NotNull
