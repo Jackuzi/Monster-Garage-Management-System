@@ -1,15 +1,31 @@
 //passing id for edit modal dialog
 
 //editing car
-function viewCarsModal(id) {
+function viewCarsModal(id, choice) {
     console.log(id);
+    var url = "";
+    var object = '';
+    var modalid = '';
+
+    switch (choice) {
+        case "customer":
+            url = "/carsAndCustomers/cars/edit/customer/" + id;
+            object = '#viewCustomerHolder';
+            modalid = '#modal-customerEdit';
+            break;
+        case "car":
+            url = "/carsAndCustomers/cars/edit/" + id;
+            object = '#viewCarHolder';
+            modalid = '#modal-editCar';
+            break;
+    }
     $.ajax({
-        url: "/carsAndCustomers/cars/edit/" + id,
+        url: url,
         success: function (data) {
             //alert('success');
             console.log(data);
-            $('#viewCarHolder').html(data);
-            $('#modal-default').modal('show');
+            $(object).html(data);
+            $(modalid).modal('show');
         }
     });
 }

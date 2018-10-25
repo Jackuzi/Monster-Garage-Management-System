@@ -1,5 +1,7 @@
 package com.monster.garage.entities.car;
 
+import com.monster.garage.entities.customer.Customer;
+import com.monster.garage.entities.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +13,15 @@ public class CarController {
 
   @Autowired
   CarRepository carRepository;
+  @Autowired
+  CustomerRepository customerRepository;
 
   @RequestMapping("/carsAndCustomers/cars")
   public String cars(Model model) {
     model.addAttribute("cars", carRepository.findAll());
     model.addAttribute("car", new Car());
+    model.addAttribute("customers", customerRepository.findAll());
+    model.addAttribute("customer", new Customer());
     return "cars";
   }
 
