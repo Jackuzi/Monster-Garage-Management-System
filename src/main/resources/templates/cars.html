@@ -69,13 +69,6 @@
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
                            role="tab" aria-controls="nav-profile" aria-selected="false">customer</a>
 
-                        <button type="submit" name="action"
-                                class="fa fa-plus-square nav-icon btn-sm btn-success"
-                                data-toggle="modal"
-                                data-target="#viewCars"
-                                th:onclick="'javascript:viewCarsModalAdd();'"> New Car
-                        </button>
-
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -84,7 +77,13 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Search car</h3>
+                                        <button class="fa fa-plus-square nav-icon btn-sm btn-success"
+                                                data-target="#viewCars"
+                                                data-toggle="modal"
+                                                name="action"
+                                                th:onclick="'javascript:viewCarsModalAdd();'"
+                                                type="submit"> New Car
+                                        </button>
                                         <div class="card-tools">
                                             <div class="input-group input-group-sm" style="width: 150px;">
                                                 <input name="table_search" class="form-control float-right"
@@ -115,7 +114,6 @@
                                             </tr>
                                             </thead>
                                             <tbody id="carsTable">
-                                            <img th:src="@{/loadings/loader3.gif}" id="img" style="display:none"/>
                                             <tr th:each="car: ${cars}">
                                                 <td hidden th:text="${car.id}"></td>
                                                 <td th:text="${car.reg}">
