@@ -18,15 +18,25 @@ public class CustomerController {
   }
 
   //edit customer data and return edit modal view
-  @GetMapping("/carsAndCustomers/cars/edit/customer/{id}")
+  @GetMapping("/carsAndCustomers/customer/edit/{id}")
   public String editForm(@PathVariable("id") Integer id, Model model) {
     Customer customer = customerRepository.getOne(id);
     model.addAttribute("customer", customer);
-    return "fragments/editCustomerForm :: editCustomerView";
+    return "fragments/editCustomerForm :: editCustomerForm";
 
   }
 
-  @PostMapping("/carsAndCustomers/cars/edit/customer/{id}")
+  //show customer to delete
+  @GetMapping("/carsAndCustomers/customer/delete/{id}")
+  public String deleteCustomerModal(@PathVariable("id") Integer id, Model model) {
+    model.addAttribute("customer", customerRepository.findById(id));
+    return "fragments/deleteConfirmationCustomer :: deleteConfirmationCustomer";
+
+  }
+
+
+  //save edited customer
+  @PostMapping("/carsAndCustomers/customer/edit/{id}")
   public String saveForm(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
     try {
       customerRepository.save(customer);
@@ -40,6 +50,22 @@ public class CustomerController {
       redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
       return "redirect:/carsAndCustomers/cars";
 
+    }
+  }
+
+  @PostMapping("/carsAndCustomers/customer/delete/{id}")
+  public String deleteCar(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
+    try {
+      customerRepository.delete(customer);
+      redirectAttributes.addFlashAttribute("message", "Success. Record Removed");
+      redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+      return "redirect:/carsAndCustomers/cars";
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      redirectAttributes.addFlashAttribute("message", "An error occurred");
+      redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+      return "redirect:/carsAndCustomers/cars/edit";
     }
   }
 }

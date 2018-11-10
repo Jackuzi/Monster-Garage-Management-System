@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="editCustomerForm">
+<div th:fragment="deleteConfirmationCustomer">
     <div class="content-wrapper">
         <section class="content">
-            <div class="modal fade in" id="modal-customer-edit">
+            <div class="modal fade in" id="modal-delete-customer">
                 <div class="modal-dialog">
-                    <form action="#" method="post" th:action="'customer/edit/' +${id}" th:object="${customer}"
-                    >
+                    <form action="#" method="post" th:action="'customer/delete/' +${id}"
+                          th:object="${customer}">
                         <div class="modal-content">
-                            <div class="modal-header"><h4 class="modal-title">Edit mode2</h4>
+                            <div class="modal-header"><h4 class="modal-title">Are you Sure to remove following
+                                entry?</h4>
                                 <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                                     <span aria-hidden="true">×</span></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col s12">
-                                        <div class="row">
-                                            <table class="table table-hover table-bordered">
-                                                <tbody>
-                                                <tr>
-                                                    <td class="table-success">id:</td>
-                                                    <td><input readonly="readonly" th:field="*{id}"
-                                                               type="text"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="table-success">name:</td>
-                                                    <td><input contenteditable="true" required="required"
-                                                               th:field="*{name}" type="text"/></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="table-success">surname:</td>
-                                                    <td><input contenteditable="true" required="required"
-                                                               th:field="*{surname}"
-                                                               type="text"/>
-                                                    </td>
-                                                </tr>
 
+                                        <div class="row">
+                                            <table class="table table-hover table-danger">
+                                                <tbody>
+                                                <tr hidden>
+                                                    <td class="table-success">id:</td>
+                                                    <td><input readonly="readonly" th:field="*{id}" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="table-success">make:</td>
+                                                    <td><input readonly="readonly" th:field="*{name}" type="text"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="table-success">model:</td>
+                                                    <td><input readonly="readonly" th:field="*{surname}"
+                                                               type="text"/></td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -48,7 +46,7 @@
                             <div class="modal-footer">
                                 <button class="btn btn-default pull-left" data-dismiss="modal" type="button">Close
                                 </button>
-                                <button class="btn btn-primary" type="submit" value="Submit">Save changes</button>
+                                <button class="btn btn-danger" type="submit" value="Submit">Delete car</button>
                             </div>
                         </div>
                     </form>

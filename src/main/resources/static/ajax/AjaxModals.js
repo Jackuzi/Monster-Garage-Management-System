@@ -1,6 +1,4 @@
-//passing id for edit modal dialog
-
-//editing car
+//editing car/customer modals
 function viewCarsModal(id, choice) {
     console.log(id);
     var url = "";
@@ -9,9 +7,9 @@ function viewCarsModal(id, choice) {
 
     switch (choice) {
         case "customer":
-            url = "/carsAndCustomers/cars/edit/customer/" + id;
+            url = "/carsAndCustomers/customer/edit/" + id;
             object = '#viewCustomerHolder';
-            modalid = '#modal-customerEdit';
+            modalid = '#modal-customer-edit';
             break;
         case "car":
             url = "/carsAndCustomers/cars/edit/" + id;
@@ -30,7 +28,7 @@ function viewCarsModal(id, choice) {
     });
 }
 
-//new car adding
+//new car/customer adding
 function viewCarsModalAdd() {
     $.ajax({
         url: "/carsAndCustomers/cars/new",
@@ -38,21 +36,38 @@ function viewCarsModalAdd() {
             //alert('success');
             console.log(data);
             $('#viewCarHolder').html(data);
-            $('#modal-default').modal('show');
+            $('#modal-editCar').modal('show');
         }
     });
 }
 
-//deleting car
-function deleteCarConfirmation(id) {
+//deleting car/customer modals
+function deleteCarConfirmation(id, choice) {
+    var url = "";
+    var object = '';
+    var modalid = '';
+
+    switch (choice) {
+        case "customer":
+            url = "/carsAndCustomers/customer/delete/" + id;
+            object = '#delete-customer-holder';
+            modalid = '#modal-delete-customer';
+            break;
+        case "car":
+            url = "/carsAndCustomers/cars/delete/" + id;
+            object = '#delete-car-holder';
+            modalid = '#modal-delete-car';
+            break;
+    }
+
     console.log(id);
     $.ajax({
-        url: "/carsAndCustomers/cars/delete/" + id,
+        url: url,
         success: function (data) {
             //alert('success');
             console.log(data);
-            $('#deleteHolder').html(data);
-            $('#modal-delete').modal('show');
+            $(object).html(data);
+            $(modalid).modal('show');
         }
     });
 }
